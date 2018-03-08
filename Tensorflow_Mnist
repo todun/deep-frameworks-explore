@@ -1,6 +1,5 @@
 import tensorflow as tf
 import numpy as np
-import utils1
 from utils1 import tile_raster_images
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -70,15 +69,7 @@ for i in range(20000):
     train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 	
 print("test accuracy %g"%accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
-
-
-########### Visualization  ###############
-
-!wget --output-document utils1.py http://deeplearning.net/tutorial/code/utils.py
-image = Image.fromarray(tile_raster_images(kernels, img_shape=(5, 5) ,tile_shape=(4, 8), tile_spacing=(1, 1)))
-plt.rcParams['figure.figsize'] = (18.0, 18.0)
-imgplot = plt.imshow(image)
-imgplot.set_cmap('gray')  
+ 
 
 #### closing the session ####
 sess.close() #finish the session
